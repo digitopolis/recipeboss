@@ -11,15 +11,25 @@ class NewRecipe extends React.Component {
 						<hr/>
 						<div>
 							<label className='form-label'>Name: </label>
-							<input className='form-input'type='text'/>
+							<input
+								className='form-input'
+								type='text'/>
 						</div>
 						<div>
 							<label className='form-label'>Description: </label>
-							<input className='form-input'type='text'/>
+							<input
+								className='form-input'
+								type='text'/>
 						</div>
 						<div>
 							<label className='form-label'>Instructions: </label>
-							<textarea className='form-input'/>
+							<textarea
+								style={{width: '300px', height: '100px'}}
+								className='form-input'/>
+						</div>
+						<div>
+							<input
+								type='submit'/>
 						</div>
 					</form>
 				</FormContainer>
