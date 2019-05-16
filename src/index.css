@@ -17,3 +17,15 @@ code {
 	display: flex;
 	justify-content: center;
 }
+
+.form-label {
+	float: left;
+	clear: left;
+	padding-right: 20px;
+	width: 25%;
+	text-align: right;
+}
+
+.form-input {
+	float: left;
+}

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import RecipeIndex from './RecipeIndex'
 import './App.css';
 import NavBar from './NavBar';
+import NewRecipe from './NewRecipe'
 import recipeData from './recipes'
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
       <NavBar
 				showNewForm={showNewForm}
 				showAllRecipes={showAllRecipes}/>
-      {showForm ? console.log('true') : <RecipeIndex recipes={recipes} />}
+			{showForm ? <NewRecipe /> : <RecipeIndex recipes={recipes} />}
     </div>
   );
 }
