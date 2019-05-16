@@ -6,15 +6,26 @@ import recipeData from './recipes'
 
 function App() {
   const [recipes, setRecipes] = useState([])
+	const [showForm, setShowForm] = useState(null)
 
   useEffect(() => {
     setRecipes(recipeData)
   }, [])
 
+	const showNewForm = () => {
+		setShowForm(true)
+	}
+
+	const showAllRecipes = () => {
+		setShowForm(false)
+	}
+
   return (
     <div className="App">
-      <NavBar />
-      <RecipeIndex recipes={recipes} />
+      <NavBar
+				showNewForm={showNewForm}
+				showAllRecipes={showAllRecipes}/>
+      {showForm ? console.log('true') : <RecipeIndex recipes={recipes} />}
     </div>
   );
 }

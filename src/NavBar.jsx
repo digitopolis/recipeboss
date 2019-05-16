@@ -9,9 +9,12 @@ const NavBar = ({ links, ...props }) => {
         <HeaderItem>
           <Icon size="small" alt="sauce" src={sauceIcon} />
         </HeaderItem>
-        <HeaderItem>
+        <HeaderItem onClick={props.showAllRecipes}>
           Recipes
         </HeaderItem>
+				<HeaderItem onClick={props.showNewForm}>
+					Add New Recipe
+				</HeaderItem>
         <HeaderItem>User@RecipeBoss.com</HeaderItem>
       </HeaderMenu>
     </Header>
@@ -43,6 +46,7 @@ const HeaderItem = styled.li`
   text-align: center;
   box-sizing: border-box;
   list-style-type: none;
+	cursor: pointer;
 `
 const Icon = styled.img`
   height: 24px;
