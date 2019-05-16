@@ -22,7 +22,7 @@ export default RecipeCard
 const CardWrapper = styled.div`
   background-color: white;
   width: 250px;
-  height: 300px;
+  height: auto;
   cursor: pointer;
   position: relative;
   border: black solid 3px;
