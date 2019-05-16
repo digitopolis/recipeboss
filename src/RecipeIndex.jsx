@@ -3,7 +3,7 @@ import RecipeCard from './RecipeCard'
 
 const RecipeIndex = ({recipes, ...props}) => {
   return (
-    <div>
+    <div className='container'>
       {recipes.map((recipe, idx) => (
         <RecipeCard key={idx} {...recipe} />
       ))}

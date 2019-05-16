@@ -23,7 +23,7 @@ NavBar.displayName = 'NavBar'
 
 const Header = styled.header`
   background-color: gray;
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
