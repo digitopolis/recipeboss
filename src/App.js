@@ -6,12 +6,12 @@ import NewRecipe from './NewRecipe'
 import recipeData from './recipes'
 
 function App() {
-  const [recipes, setRecipes] = useState([])
+  const [recipes, setRecipes] = useState(recipeData)
 	const [showForm, setShowForm] = useState(null)
 
   useEffect(() => {
-    setRecipes(recipeData)
-  }, [])
+    console.log(recipes);
+  })
 
 	const showNewForm = () => {
 		setShowForm(true)
@@ -21,12 +21,18 @@ function App() {
 		setShowForm(false)
 	}
 
+	const addRecipe = (newRecipeObj) => {
+		recipes.push(newRecipeObj)
+		setRecipes(recipes)
+		showAllRecipes()
+	}
+
   return (
     <div className="App">
       <NavBar
 				showNewForm={showNewForm}
 				showAllRecipes={showAllRecipes}/>
-			{showForm ? <NewRecipe /> : <RecipeIndex recipes={recipes} />}
+			{showForm ? <NewRecipe addRecipe={addRecipe}/> : <RecipeIndex recipes={recipes} />}
     </div>
   );
 }
