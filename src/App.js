@@ -1,46 +1,53 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import RecipeIndex from './RecipeIndex'
 import './App.css';
 import NavBar from './NavBar';
 import NewRecipe from './NewRecipe'
 import recipeData from './recipes'
 
-function App() {
-  const [recipes, setRecipes] = useState([])
-	const [showForm, setShowForm] = useState(null)
+class App extends React.Component {
 
-  useEffect(() => {
-    setRecipes(recipeData)
-  }, [])
-
-	const showNewForm = () => {
-		setShowForm(true)
+	state = {
+		recipes: [],
+		showForm: false
 	}
 
-	const showAllRecipes = () => {
-		setShowForm(false)
+	componentDidMount() {
+		this.setState({ recipes: recipeData })
 	}
 
-	const addRecipe = (newRecipeObj) => {
-		recipes.push(newRecipeObj)
-		setRecipes(recipes)
-		showAllRecipes()
+	showNewForm = () => {
+		this.setState({ showForm: true })
 	}
 
-	const deleteRecipe = (recipeId) => {
-		recipes.splice(recipeId, 1)
-		console.log(recipes);
-		setRecipes(recipes)
+	showAllRecipes = () => {
+		this.setState({ showForm: false })
 	}
 
-  return (
-    <div className="App">
-      <NavBar
-				showNewForm={showNewForm}
-				showAllRecipes={showAllRecipes}/>
-			{showForm ? <NewRecipe addRecipe={addRecipe}/> : <RecipeIndex recipes={recipes} deleteRecipe={deleteRecipe} />}
-    </div>
-  );
+	addRecipe = (newRecipeObj) => {
+		const updatedRecipes = [...this.state.recipes, newRecipeObj]
+		this.setState({
+			recipes: updatedRecipes,
+		 	showForm: false
+		})
+	}
+
+	deleteRecipe = (recipeId) => {
+		const recipesCopy = [...this.state.recipes]
+		recipesCopy.splice(recipeId, 1)
+		this.setState({ recipes: recipesCopy })
+	}
+
+	render () {
+		return (
+	    <div className="App">
+	      <NavBar
+					showNewForm={this.showNewForm}
+					showAllRecipes={this.showAllRecipes}/>
+				{this.state.showForm ? <NewRecipe addRecipe={this.addRecipe}/> : <RecipeIndex recipes={this.state.recipes} deleteRecipe={this.deleteRecipe} />}
+	    </div>
+	  );
+	}
 }
 
 export default App;
