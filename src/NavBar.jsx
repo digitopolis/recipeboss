@@ -3,6 +3,11 @@ import styled from 'styled-components'
 import sauceIcon from './sauce.png'
 
 const NavBar = ({ links, ...props }) => {
+
+	const handleChange = (event) => {
+		props.handleSearchInput(event.target.value)
+	}
+
   return (
     <Header>
       <HeaderMenu>
@@ -18,6 +23,7 @@ const NavBar = ({ links, ...props }) => {
 				<HeaderItem onClick={props.showFavorites}>
 					My Favorite Recipes
 				</HeaderItem>
+				<input onChange={handleChange} type="text" placeholder="Search.." name="search"/>
         <HeaderItem>User@RecipeBoss.com</HeaderItem>
       </HeaderMenu>
     </Header>

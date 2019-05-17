@@ -10,7 +10,8 @@ class App extends React.Component {
 	state = {
 		recipes: [],
 		showForm: false,
-		showFavorites: false
+		showFavorites: false,
+		searchTerm: ''
 	}
 
 	componentDidMount() {
@@ -55,14 +56,19 @@ class App extends React.Component {
 		this.setState({ recipes: recipesCopy })
 	}
 
+	handleSearchInput = (input) => {
+		this.setState({ searchTerm: input })
+	}
+
 	render () {
 		return (
 	    <div className="App">
 	      <NavBar
 					showNewForm={this.showNewForm}
 					showAllRecipes={this.showAllRecipes}
-					showFavorites={this.showFavorites}/>
-				{this.state.showForm ? <NewRecipe addRecipe={this.addRecipe}/> : <RecipeIndex recipes={this.state.recipes} deleteRecipe={this.deleteRecipe} favoriteRecipe={this.favoriteRecipe} showFavorites={this.state.showFavorites}/>}
+					showFavorites={this.showFavorites}
+					handleSearchInput={this.handleSearchInput}/>
+				{this.state.showForm ? <NewRecipe addRecipe={this.addRecipe}/> : <RecipeIndex recipes={this.state.recipes} deleteRecipe={this.deleteRecipe} favoriteRecipe={this.favoriteRecipe} showFavorites={this.state.showFavorites} searchTerm={this.state.searchTerm}/>}
 	    </div>
 	  );
 	}
