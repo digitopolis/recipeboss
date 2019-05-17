@@ -13,7 +13,12 @@ const RecipeCard = recipe => {
       <h3>{recipe.name}</h3>
       <p>{recipe.description}</p>
       <p>{recipe.instructions}</p>
-			<button onClick={()=>recipe.deleteRecipe(recipe.recipeId)}>Remove</button>
+			<button onClick={()=>recipe.favoriteRecipe(recipe.recipeId)}>
+				{recipe.favorite ? <span role='img' aria-label='favorite'>⭐️</span> : <span>Add to Faves</span>}
+			</button>
+			<button onClick={()=>recipe.deleteRecipe(recipe.recipeId)}>
+				<span role='img' aria-label='delete'>❌</span>
+			</button>
     </CardWrapper>
   )
 }

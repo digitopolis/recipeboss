@@ -15,6 +15,9 @@ const NavBar = ({ links, ...props }) => {
 				<HeaderItem onClick={props.showNewForm}>
 					Add New Recipe
 				</HeaderItem>
+				<HeaderItem onClick={props.showFavorites}>
+					My Favorite Recipes
+				</HeaderItem>
         <HeaderItem>User@RecipeBoss.com</HeaderItem>
       </HeaderMenu>
     </Header>

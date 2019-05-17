@@ -9,7 +9,8 @@ class App extends React.Component {
 
 	state = {
 		recipes: [],
-		showForm: false
+		showForm: false,
+		showFavorites: false
 	}
 
 	componentDidMount() {
@@ -21,7 +22,17 @@ class App extends React.Component {
 	}
 
 	showAllRecipes = () => {
-		this.setState({ showForm: false })
+		this.setState({
+			showForm: false,
+		 	showFavorites: false
+		})
+	}
+
+	showFavorites = () => {
+		this.setState({
+			showForm: false,
+			showFavorites: true
+		})
 	}
 
 	addRecipe = (newRecipeObj) => {
@@ -38,13 +49,20 @@ class App extends React.Component {
 		this.setState({ recipes: recipesCopy })
 	}
 
+	favoriteRecipe = (recipeId) => {
+		const recipesCopy = [...this.state.recipes]
+		recipesCopy[recipeId].favorite = true
+		this.setState({ recipes: recipesCopy })
+	}
+
 	render () {
 		return (
 	    <div className="App">
 	      <NavBar
 					showNewForm={this.showNewForm}
-					showAllRecipes={this.showAllRecipes}/>
-				{this.state.showForm ? <NewRecipe addRecipe={this.addRecipe}/> : <RecipeIndex recipes={this.state.recipes} deleteRecipe={this.deleteRecipe} />}
+					showAllRecipes={this.showAllRecipes}
+					showFavorites={this.showFavorites}/>
+				{this.state.showForm ? <NewRecipe addRecipe={this.addRecipe}/> : <RecipeIndex recipes={this.state.recipes} deleteRecipe={this.deleteRecipe} favoriteRecipe={this.favoriteRecipe} showFavorites={this.state.showFavorites}/>}
 	    </div>
 	  );
 	}
