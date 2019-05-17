@@ -5,7 +5,11 @@ const RecipeIndex = ({recipes, ...props}) => {
   return (
     <div className='container'>
       {recipes.map((recipe, idx) => (
-        <RecipeCard key={idx} {...recipe} />
+        <RecipeCard
+					key={idx}
+					recipeId={idx}
+					deleteRecipe={props.deleteRecipe}
+					{...recipe} />
       ))}
     </div>
   )

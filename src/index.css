@@ -16,6 +16,7 @@ code {
 	position: relative;
 	display: flex;
 	justify-content: center;
+	flex-wrap: wrap;
 }
 
 .form-label {
