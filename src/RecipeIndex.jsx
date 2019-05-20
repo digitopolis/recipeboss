@@ -5,7 +5,7 @@ const RecipeIndex = ({recipes, ...props}) => {
 
 	const searchFilter = (allRecipes, searchTerm) => {
 		return allRecipes.filter( recipe => {
-			return recipe.name.includes(searchTerm) || recipe.description.includes(searchTerm)
+			return recipe.name.toLowerCase().includes(searchTerm) || recipe.description.toLowerCase().includes(searchTerm)
 		})
 	}
 

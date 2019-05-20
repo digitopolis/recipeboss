@@ -5,7 +5,7 @@ import sauceIcon from './sauce.png'
 const NavBar = ({ links, ...props }) => {
 
 	const handleChange = (event) => {
-		props.handleSearchInput(event.target.value)
+		props.handleSearchInput(event.target.value.toLowerCase())
 	}
 
   return (
