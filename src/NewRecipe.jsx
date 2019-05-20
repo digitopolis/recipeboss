@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import PhotoPicker from './PhotoPicker'
 
 class NewRecipe extends React.Component {
 
@@ -7,7 +8,8 @@ class NewRecipe extends React.Component {
 		name: '',
 		description: '',
 		instructions: '',
-		image: ''
+		image: '',
+		showPhotoPicker: false
 	}
 
 	handleChange = (event) => {
@@ -23,6 +25,8 @@ class NewRecipe extends React.Component {
 		const newRecipeObj = this.state
 		this.props.addRecipe(newRecipeObj)
 	}
+
+
 
 	render () {
 		return (
@@ -65,6 +69,7 @@ class NewRecipe extends React.Component {
 							/>
 						</div>
 						<div>
+							<input type='button' onClick={()=>this.setState({showPhotoPicker:true})} value='Add Photo'/>
 							<input
 								type='submit'
 								value='Save Recipe'
@@ -72,6 +77,7 @@ class NewRecipe extends React.Component {
 						</div>
 					</form>
 				</FormContainer>
+				{this.state.showPhotoPicker ? <PhotoPicker /> : null}
 			</div>
 		)
 	}
