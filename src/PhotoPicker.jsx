@@ -37,18 +37,22 @@ class PhotoPicker extends React.Component {
 	showPhotoList = () => {
 		if (this.state.photos[0]) {
 			return (
-				<PhotoGrid>
-					<div onChange={this.handleSelect}>
-						{this.state.photos.map(photo => {
-							return (
-								<label key={photo.id}>
+				<div className='photo-grid' onChange={this.handleSelect}>
+					{this.state.photos.map(photo => {
+						return (
+							<CardWrapper key={photo.id}>
+								<label>
 									<input type='radio' name='image' value={photo.urls.small}/>
-									<img src={photo.urls.thumb} alt={photo.alt_description}/>
+									<div style={{ overflow: 'hidden', height: '160px'}}>
+										<img
+											src={photo.urls.thumb}
+											alt={photo.alt_description}/>
+									</div>
 								</label>
-							)
-						})}
-					</div>
-				</PhotoGrid>
+							</CardWrapper>
+						)
+					})}
+				</div>
 			)
 		} else {
 			return null
@@ -76,7 +80,9 @@ class PhotoPicker extends React.Component {
 					</form>
 				</PhotoContainer>
 				<div className='container'>
-					{this.showPhotoList()}
+					<PhotoContainer>
+						{this.showPhotoList()}
+					</PhotoContainer>
 				</div>
 			</div>
 		)
@@ -94,8 +100,13 @@ const PhotoContainer = styled.div`
   border: black solid 3px;
   border-radius: 5px;
 `
-const PhotoGrid = styled.div`
-	display: flex;
-	flex-direction: row;
 
+const CardWrapper = styled.div`
+  background-color: white;
+  width: 200px;
+  height: auto;
+  cursor: pointer;
+  position: relative;
+  border: black solid 3px;
+  border-radius: 5px;
 `

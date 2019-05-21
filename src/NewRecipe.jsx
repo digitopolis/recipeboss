@@ -65,6 +65,7 @@ class NewRecipe extends React.Component {
 							<label className='form-label'>Image URL: </label>
 							<input
 								className='form-input'
+								readOnly
 								type='text'
 								name='image'
 								value={this.state.image}

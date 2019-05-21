@@ -31,3 +31,9 @@ code {
 	float: left;
 	width: 300px;
 }
+
+.photo-grid {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
