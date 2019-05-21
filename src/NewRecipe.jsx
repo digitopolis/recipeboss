@@ -26,6 +26,9 @@ class NewRecipe extends React.Component {
 		this.props.addRecipe(newRecipeObj)
 	}
 
+	handleImageSelection = (image) => {
+		this.setState({ image })
+	}
 
 
 	render () {
@@ -59,6 +62,15 @@ class NewRecipe extends React.Component {
 							/>
 						</div>
 						<div>
+							<label className='form-label'>Image URL: </label>
+							<input
+								className='form-input'
+								type='text'
+								name='image'
+								value={this.state.image}
+							/>
+						</div>
+						<div>
 							<label className='form-label'>Instructions: </label>
 							<textarea
 								style={{width: '300px', height: '100px'}}
@@ -77,7 +89,7 @@ class NewRecipe extends React.Component {
 						</div>
 					</form>
 				</FormContainer>
-				{this.state.showPhotoPicker ? <PhotoPicker /> : null}
+				{this.state.showPhotoPicker ? <PhotoPicker handleImageSelection={this.handleImageSelection}/> : null}
 			</div>
 		)
 	}

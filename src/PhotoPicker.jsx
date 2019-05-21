@@ -18,7 +18,8 @@ class PhotoPicker extends React.Component {
 		})
 		unsplash.search.photos(this.state.searchTerm, 1)
 		  .then(toJson)
-		  .then(photos => {
+		  .then(response => {
+				const photos = response.results
 		    this.setState({ photos })
 		  })
 	}
@@ -28,6 +29,32 @@ class PhotoPicker extends React.Component {
 		this.setState({ searchTerm })
 	}
 
+	handleSelect = (event) => {
+		const imgUrl = event.target.value
+		this.props.handleImageSelection(imgUrl)
+	}
+
+	showPhotoList = () => {
+		if (this.state.photos[0]) {
+			return (
+				<PhotoGrid>
+					<div onChange={this.handleSelect}>
+						{this.state.photos.map(photo => {
+							return (
+								<label key={photo.id}>
+									<input type='radio' name='image' value={photo.urls.small}/>
+									<img src={photo.urls.thumb} alt={photo.alt_description}/>
+								</label>
+							)
+						})}
+					</div>
+				</PhotoGrid>
+			)
+		} else {
+			return null
+		}
+	}
+
 	render () {
 		return (
 			<div className='container'>
@@ -35,7 +62,7 @@ class PhotoPicker extends React.Component {
 					<form
 						style={{flexGrow: 1}}
 						onSubmit={this.handleSearch}>
-						<h3>pick a photo!</h3>
+						<h3>Pick a photo!</h3>
 						<hr/>
 						<div>
 							<input
@@ -48,6 +75,9 @@ class PhotoPicker extends React.Component {
 						</div>
 					</form>
 				</PhotoContainer>
+				<div className='container'>
+					{this.showPhotoList()}
+				</div>
 			</div>
 		)
 	}
@@ -63,4 +93,9 @@ const PhotoContainer = styled.div`
 	justify-content: center;
   border: black solid 3px;
   border-radius: 5px;
+`
+const PhotoGrid = styled.div`
+	display: flex;
+	flex-direction: row;
+
 `
