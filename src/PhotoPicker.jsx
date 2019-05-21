@@ -7,14 +7,13 @@ class PhotoPicker extends React.Component {
 	state = {
 		searchTerm: '',
 		photos: [],
-		submitted: false
 	}
 
 	handleSearch = (event) => {
 		event.preventDefault()
 		const unsplash = new Unsplash({
-		  applicationId: `${process.env.REACT_APP_APP_ACCESS_KEY}`,
-		  secret: `${process.env.REACT_APP_APP_SECRET}`
+		  applicationId: 'e4cd6c04b3782452801425671d67fe046b3e2673c59952928c753c3933c8ec3a',
+		  secret: '85fcd706af4feadeb489b2228b0e8f053a7d8f8e82d2a9105849760b906d74d3'
 		})
 		unsplash.search.photos(this.state.searchTerm, 1)
 		  .then(toJson)
@@ -66,7 +65,7 @@ class PhotoPicker extends React.Component {
 					<form
 						style={{flexGrow: 1}}
 						onSubmit={this.handleSearch}>
-						<h3>Pick a photo!</h3>
+						<h3>Find a photo!</h3>
 						<hr/>
 						<div>
 							<input
